@@ -1,6 +1,12 @@
 html {
     margin: 0;
 }
+body{
+    margin: 4rem;
+   border: 10px solid #eeeeee;
+   border-bottom: 20px solid #eeeeee;
+}
+   
 
 .line {
     border: none;
@@ -125,6 +131,100 @@ label{
     height: 1.2rem;
     margin-top: 2px;
     margin-bottom: 1.2rem;
+}
+
+/* ----------------------------------- */
+.main1-bottom{
+
     border-top: 1px solid gray ;
+    padding: 0 10px;
+    display: flex;
+}
+
+.main1-bottom-left {
+    padding: 0;
+    width: 30%;
+    margin-left: 2%;
+    /* Điều chỉnh khoảng cách từ trái */
+    margin-top: 1rem;
+}
+.main1-bottom-right {
+    font-family: "Roboto", sans-serif;
+    font-weight: 200;
+    font-style:normal;
+    padding: 0;
+    width: 100%;
+    margin-left: 2%;
+   margin-top: 2rem;
+  
+}
+.Notes{
+    margin-top: 5rem;
+    padding-bottom: 8rem;
+   
+   }
+
+
+.main1-bottom-left p{
+    
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    margin-bottom: 1.5rem;
+}
+
+
+.checkbox{
+    text-align: left;
+    margin: 0;
+    padding: 0;
+
+}
+.img{
+    width: 5rem;
+}
+.img img{
+  
+    height: 10%;
+}
+.label1{
+    font-size: 85%;
+    font-weight: 600;
+
+}
+.checkbox input[type="checkbox"]{
+    padding: 0;
+    margin: 0;
+    margin-left: 5px;
+ 
+}
+h3{
+    margin: 0;
+}
+
+.main1-bottom-right p{
+    
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+}
+/* ------------------- */
+footer{
+    display: flex;
+    
+}
+.left{
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    padding: 0;
+    width: 30%;
+    margin-left: 2%;
+}
+.right input[tipe="submit"]{
+ 
+    justify-content: flex-start
    
 }
