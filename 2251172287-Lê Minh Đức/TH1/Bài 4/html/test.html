@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- <style>
+    css cho laptop 
+     div{
+        font-size: 50px;
+        background-color: yellow;
+    }
+    css cho mobite
+    @media screen and  (min-width: 450px) and ( max-width: 768px)  { 
+        div{
+        font-size: 10px;
+        background-color: yellow;
+     }
+    }      
+    
+</style> -->
+<style>
+    html{
+        --taoyeumay:rgb(244,5,22);
+        --chieucao: 300px;
+        --dorong:100px;
+
+    }
+    .box{
+        background-color: var(--taoyeumay);
+        width: var(--chieucao);
+        height: var(--dorong);
+        margin-bottom: 5px;
+        /* cho hiệu ứng trở nên mềm mại hơn */
+        /* transition: transform 6s linear 1s ease 0.3s; */
+        transition: all 5s ease-out 0.3s;  
+        /* điểm đầu */
+    }
+    .one:hover{
+/* ĐIỂM ĐÍCH */
+
+        /* thay đổi hay biến đổi thì sử dụng transform */
+/* transform: rotate(45deg); */
+/* transform: scale(35px); */
+ transform: translateX(300px) ;
+background-color: rgb(19, 145, 130);
+transform: scale(3);
+
+    }
+</style>
+<body>
+    <div class="box one">
+        the content of box
+    </div>
+    <div class="box">
+        1 the content of box
+    </div>
+    <div class="box">
+        2 the content of box
+    </div>
+</body>
+</html>
