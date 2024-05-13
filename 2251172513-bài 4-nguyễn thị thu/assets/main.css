@@ -211,20 +211,33 @@ h3{
     justify-content: center;
 }
 /* ------------------- */
-footer{
+.footer {
     display: flex;
-    
+    align-items: center; /* Đảm bảo căn chỉnh các phần tử trên cùng một hàng */
+    justify-content: space-between; /* Đặt các phần tử sang hai phía */
+    padding: 10px; /* Thêm một chút khoảng cách để trang trí */
 }
-.left{
+
+.footer .line {
+    flex: 1;
+    border: 1px solid black; /* Tạo đường kẻ */
+}
+
+.left {
     font-family: "Roboto", sans-serif;
     font-weight: 600;
     font-style: normal;
-    padding: 0;
-    width: 30%;
+    width: 30%; /* Đảm bảo phần này không quá lớn */
     margin-left: 2%;
 }
-.right input[tipe="submit"]{
- 
-    justify-content: flex-start
-   
+
+.right {
+    display: flex;
+    gap: 10px; /* Khoảng cách giữa các nút */
+    justify-content: flex-end; /* Căn chỉnh các nút sang bên phải */
+}
+
+.right input {
+    padding: 5px 10px; /* Thêm một chút khoảng cách cho các nút */
+    border: 1px solid #ccc; /* Đường viền của nút */
 }
