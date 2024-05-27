@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ứng dụng quản lý sinh viên</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="container mx-auto p-4">
+
+    <h2 class="text-2xl font-bold mb-4">Thêm sinh viên</h2>
+    <form id="formSinhVien" class="mb-8">
+        <div class="mb-4">
+            <label for="hoTen" class="block text-gray-700 text-sm font-bold mb-2">Họ tên:</label>
+            <input type="text" id="hoTen"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-4">
+            <label for="maSV" class="block text-gray-700 text-sm font-bold mb-2">Mã SV:</label>
+            <input type="text" id="maSV"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-4">
+            <label for="ngaySinh" class="block text-gray-700 text-sm font-bold mb-2">Ngày sinh:</label>
+            <input type="date" id="ngaySinh"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-4">
+            <label for="lop" class="block text-gray-700 text-sm font-bold mb-2">Lớp:</label>
+            <input type="text" id="lop"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="flex items-center justify-start space-x-4">
+            <!-- <div class="flex items-center justify-end space-x-4"> thêm ở cuối-->
+            <button type="submit"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Thêm
+            </button>
+            <button type="submit"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                sửa
+            </button>
+            <button type="submit"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                xóa
+            </button>
+            <button type="submit"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                tìm kiếm
+            </button>
+        </div>
+
+
+    </form>
+
+    <h2 class="text-2xl font-bold mb-4">Danh sách sinh viên</h2>
+    <table id="bangSinhVien" class="table-auto w-full">
+        <thead>
+            <tr>
+                <th class="px-4 py-2">Họ tên</th>
+                <th class="px-4 py-2">Mã SV</th>
+                <th class="px-4 py-2">Ngày sinh</th>
+                <th class="px-4 py-2">Lớp</th>
+                <th class="px-4 py-2">Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+
+<script >
+    const students = [];
+
+document.getElementById("formSinhVien").addEventListener("submit", function(event) {
+    event.preventDefault(); // Ngăn chặn form submit mặc định
+
+    const hoTen = document.getElementById("hoTen").value;
+    const maSV = document.getElementById("maSV").value;
+    const ngaySinh = document.getElementById("ngaySinh").value;
+    const lop = document.getElementById("lop").value;
+
+    const action = event.submitter.innerText.toLowerCase();
+
+    if (action === 'thêm') {
+        addStudent({ hoTen, maSV, ngaySinh, lop });
+    } else if (action === 'sửa') {
+        editStudent({ hoTen, maSV, ngaySinh, lop });
+    } else if (action === 'xóa') {
+        deleteStudent(maSV);
+    } else if (action === 'tìm kiếm') {
+        searchStudent(maSV);
+    }
+
+    displayStudents();
+    document.getElementById("formSinhVien").reset();
+});
+
+function addStudent(student) {
+    students.push(student);
+}
+
+function editStudent(updatedStudent) {
+    const index = students.findIndex(student => student.maSV === updatedStudent.maSV);
+    if (index !== -1) {
+        students[index] = updatedStudent;
+    } else {
+        alert("Sinh viên không tồn tại.");
+    }
+}
+
+function deleteStudent(maSV) {
+    const index = students.findIndex(student => student.maSV === maSV);
+    if (index !== -1) {
+        students.splice(index, 1);
+    } else {
+        alert("Sinh viên không tồn tại.");
+    }
+}
+
+function searchStudent(maSV) {
+    const student = students.find(student => student.maSV === maSV);
+    if (student) {
+        alert(`Tìm thấy sinh viên: \nHọ tên: ${student.hoTen}\nMã SV: ${student.maSV}\nNgày sinh: ${student.ngaySinh}\nLớp: ${student.lop}`);
+    } else {
+        alert("Không tìm thấy sinh viên.");
+    }
+}
+
+function displayStudents() {
+    const studentTable = document.getElementById("bangSinhVien").getElementsByTagName('tbody')[0];
+    studentTable.innerHTML = ""; // Clear the table
+
+    students.forEach(student => {
+        const row = studentTable.insertRow();
+
+        row.insertCell(0).innerText = student.hoTen;
+        row.insertCell(1).innerText = student.maSV;
+        row.insertCell(2).innerText = student.ngaySinh;
+        row.insertCell(3).innerText = student.lop;
+        
+        const actionCell = row.insertCell(4);
+        actionCell.innerHTML = `
+            <button class="edit-btn bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline mr-2">Sửa</button>
+            <button class="delete-btn bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline">Xóa</button>
+        `;
+
+        // Add event listeners to edit and delete buttons
+        actionCell.querySelector('.edit-btn').addEventListener('click', () => {
+            document.getElementById("hoTen").value = student.hoTen;
+            document.getElementById("maSV").value = student.maSV;
+            document.getElementById("ngaySinh").value = student.ngaySinh;
+            document.getElementById("lop").value = student.lop;
+        });
+
+        actionCell.querySelector('.delete-btn').addEventListener('click', () => {
+            deleteStudent(student.maSV);
+            displayStudents();
+        });
+    });
+}
+
+</script>
+</body>
+
+</html>
